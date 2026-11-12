@@ -1,0 +1,8 @@
+cmake_minimum_required(VERSION 3.16)
+project(homework2_review_pilot LANGUAGES CXX)
+set(CMAKE_CXX_STANDARD 17)
+add_executable(calculator main.cpp)
+enable_testing()
+add_test(NAME addition COMMAND calculator 2 + 3)
+set_tests_properties(addition PROPERTIES PASS_REGULAR_EXPRESSION "5")
+install(TARGETS calculator DESTINATION bin)
