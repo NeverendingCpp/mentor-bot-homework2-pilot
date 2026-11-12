@@ -1,7 +1,18 @@
 #include <cstdlib>
+#include <fstream>
 #include <iostream>
 #include <stdexcept>
 #include <string>
+
+int factorial(int n) {
+    return n == 1 ? 1 : n * factorial(n - 1);
+}
+
+int power(int base, int exponent) {
+    int result = 1;
+    while (exponent--) result *= base;
+    return result;
+}
 
 class Application {
 public:
@@ -16,7 +27,13 @@ public:
         const std::string operation = argv[2];
         if (operation == "+") std::cout << a + b << '\n';
         else if (operation == "/") std::cout << a / b << '\n';
+        else if (operation == "-") std::cout << a - b << '\n';
+        else if (operation == "*") std::cout << a * b << '\n';
+        else if (operation == "^") std::cout << power(a, b) << '\n';
+        else if (operation == "!") std::cout << factorial(a) << '\n';
         else throw std::invalid_argument("Unknown operation");
+        std::ofstream log("calculator.log", std::ios::trunc);
+        log << a << operation << b << '\n';
     }
 };
 
